@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+- name: NORTHWINDTRADERS
+  database: RAW
+  schema: NORTHWINDTRADERS
+  tables:
+    - name: CATEGORY
+    - name: CUSTOMER
+    - name: EMPLOYEE
+    - name: EMPLOYEETERRITORY
+    - name: ORDERDETAIL
+    - name: ORDERS
+    - name: PRODUCT
+    - name: REGION
+    - name: SHIPPER
+    - name: SUPPLIER
+    - name: TERRITORY

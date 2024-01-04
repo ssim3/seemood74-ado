@@ -1,4 +1,4 @@
 {{ config (materialized='table')}}
 
 SELECT * 
-FROM RAW.NORTHWINDTRADERS.product
+FROM {{ source('NORTHWINDTRADERS', 'PRODUCT') }}

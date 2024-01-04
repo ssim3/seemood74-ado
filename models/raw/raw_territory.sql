@@ -1,4 +1,4 @@
 {{ config (materialized='table')}}
 
 SELECT * 
-FROM RAW.NORTHWINDTRADERS.territory
+FROM {{ source('NORTHWINDTRADERS', 'TERRITORY') }}
