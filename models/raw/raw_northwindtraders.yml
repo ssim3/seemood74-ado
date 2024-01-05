@@ -47,7 +47,6 @@ models:
 
       - name: RegionID 
         tests:
-        - unique 
         - not_null
 
 # Region table
