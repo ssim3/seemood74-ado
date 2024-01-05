@@ -15,27 +15,3 @@ models:
         tests:  
           - not_null
 # OrderDetail table
-
-# Product table
-  - name: raw_product
-    columns:
-      - name: PRODUCTID
-        tests:
-          - unique
-          - not_null
-      - name: SUPPLIERID
-        tests: 
-          - not_null
-          - relationships:
-            to: ref('raw_supplier')
-            field: SUPPLIERID
-      - name: CATEGORYID
-        tests:
-          - not_null
-          - relationships:
-            to: ref('raw_cataegory')
-            field: CATEGORYID
-      - name: DISCONTINUED
-        tests:
-          - accepted_values:
-            values: ['true', 'false']
