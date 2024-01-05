@@ -16,6 +16,7 @@ models:
           - not_null
 # OrderDetail table
 
+
 # Product table
   - name: raw_product
     columns:
