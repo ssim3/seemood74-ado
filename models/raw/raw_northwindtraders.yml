@@ -19,23 +19,23 @@ models:
 # Product table
   - name: raw_product
     columns:
-      - name: PRODUCTID
+      - name: productID
         tests:
           - unique
           - not_null
-      - name: SUPPLIERID
+      - name: supplierID
         tests: 
           - not_null
           - relationships:
-            to: ref('raw_supplier')
-            field: SUPPLIERID
+              to: ref('raw_supplier')
+              field: supplierID
       - name: CATEGORYID
         tests:
           - not_null
           - relationships:
-            to: ref('raw_cataegory')
-            field: CATEGORYID
-      - name: DISCONTINUED
+              to: ref('raw_category')
+              field: categoryID
+      - name: discontinued
         tests:
           - accepted_values:
-            values: ['true', 'false']
+              values: ['true', 'false']
