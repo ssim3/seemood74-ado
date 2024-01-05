@@ -1,0 +1,22 @@
+{
+    "sqltools.connections": [
+        {
+            "authenticator": "SNOWFLAKE",
+            "ocspOptions": {
+                "ocspFailOpen": true
+            },
+            "snowflakeOptions": {
+                "clientSessionKeepAlive": true,
+                "clientSessionKeepAliveHeartbeatFrequency": 3600
+            },
+            "previewLimit": 50,
+            "driver": "Snowflake",
+            "name": "ADO ASG",
+            "account": "GKPMVXO-VQ81483",
+            "username": "SEEMOOD74",
+            "password": "SeeMood74#",
+            "database": "raw",
+            "warehouse": "transform"
+        }
+    ]
+}
