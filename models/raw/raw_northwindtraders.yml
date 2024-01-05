@@ -1,0 +1,33 @@
+version: 2
+
+models:
+# Orders table
+  - name: raw_order
+    columns:
+      - name: OrderID
+        tests:
+          - unique
+          - not_null
+      - name: CustomerID
+        tests:
+          - not_null
+      - name: EmployeeID
+        tests:  
+          - not_null
+# OrderDetail table
+
+# Shipper table
+  - name: raw_shipper
+    columns:
+      - name: ShipperID
+        tests:
+          - unique
+          - not_null
+
+# Region table
+  - name: raw_region
+    columns:
+      - name: RegionID
+        tests:
+          - unique
+          - not_null
