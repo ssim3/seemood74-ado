@@ -16,10 +16,23 @@ models:
           - not_null
 # OrderDetail table
 
+# Shipper table
+  - name: raw_shipper
+    columns:
+      - name: ShipperID
+
 # EmployeeTerritory
   - name: raw_employeeterritory
     columns:
       - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
+# Region table
+  - name: raw_region
+    columns:
+      - name: RegionID
         tests:
           - unique
           - not_null
@@ -47,3 +60,4 @@ models:
         tests:
           - accepted_values:
               values: ['true', 'false']
+
