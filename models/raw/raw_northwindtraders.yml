@@ -20,6 +20,11 @@ models:
   - name: raw_shipper
     columns:
       - name: ShipperID
+
+# EmployeeTerritory
+  - name: raw_employeeterritory
+    columns:
+      - name: surrogate_key
         tests:
           - unique
           - not_null
@@ -31,3 +36,28 @@ models:
         tests:
           - unique
           - not_null
+
+# Product table
+  - name: raw_product
+    columns:
+      - name: productID
+        tests:
+          - unique
+          - not_null
+      - name: supplierID
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('raw_supplier')
+              field: supplierID
+      - name: CATEGORYID
+        tests:
+          - not_null
+          - relationships:
+              to: ref('raw_category')
+              field: categoryID
+      - name: discontinued
+        tests:
+          - accepted_values:
+              values: ['true', 'false']
+
