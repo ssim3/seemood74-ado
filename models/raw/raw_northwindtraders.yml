@@ -15,9 +15,6 @@ models:
         tests:  
           - not_null
 # OrderDetail table
-<<<<<<< Updated upstream
-=======
-
 
 # Shipper table
   - name: raw_shipper
@@ -39,7 +36,6 @@ models:
         tests:
           - unique
           - not_null
-
 
 # Territory table
   - name: raw_territory
@@ -75,15 +71,33 @@ models:
           - relationships:
               to: ref('raw_supplier')
               field: supplierID
-      - name: CATEGORYID
+      - name: categoryID
         tests:
           - not_null
           - relationships:
               to: ref('raw_category')
               field: categoryID
+      - name: quantityPerUnit
+        tests:
+          - not_null
+      - name: unitPrice
+        tests:
+          - not_null
+      - name: unitsInStock
+        tests:
+          - not_null
       - name: discontinued
         tests:
           - accepted_values:
               values: ['true', 'false']
 
->>>>>>> Stashed changes
+# Category table
+  - name: raw_category
+    columns:
+      - name: categoryID
+        tests:
+        - unique
+        - not_null
+      - name: categoryName
+        tests:
+        - not_null
