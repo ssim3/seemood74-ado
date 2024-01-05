@@ -15,11 +15,25 @@ models:
         tests:  
           - not_null
 # OrderDetail table
+<<<<<<< Updated upstream
+=======
+
+# Employee table 
+  - name: raw_employee
+    columns:
+      - name: EmployeeID
+        tests:
+          - unique
+          - not_null
+>>>>>>> Stashed changes
 
 # Shipper table
   - name: raw_shipper
     columns:
       - name: ShipperID
+        tests: 
+          - unique
+          - not_null 
 
 # EmployeeTerritory
   - name: raw_employeeterritory
@@ -60,4 +74,7 @@ models:
         tests:
           - accepted_values:
               values: ['true', 'false']
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
