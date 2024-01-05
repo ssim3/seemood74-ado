@@ -50,14 +50,33 @@ models:
           - relationships:
               to: ref('raw_supplier')
               field: supplierID
-      - name: CATEGORYID
+      - name: categoryID
         tests:
           - not_null
           - relationships:
               to: ref('raw_category')
               field: categoryID
+      - name: quantityPerUnit
+        tests:
+          - not_null
+      - name: unitPrice
+        tests:
+          - not_null
+      - name: unitsInStock
+        tests:
+          - not_null
       - name: discontinued
         tests:
           - accepted_values:
               values: ['true', 'false']
 
+# Category table
+  - name: raw_category
+    columns:
+      - name: categoryID
+        tests:
+        - unique
+        - not_null
+      - name: categoryName
+        tests:
+        - not_null
