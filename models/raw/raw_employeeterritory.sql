@@ -1,4 +1,4 @@
 {{ config (materialized='table')}}
 
-SELECT * 
+SELECT EmployeeID || '-' || TerritoryID as surrogate_key, *
 FROM {{ source('NORTHWINDTRADERS', 'EMPLOYEETERRITORY') }}
