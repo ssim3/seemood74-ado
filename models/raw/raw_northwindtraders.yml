@@ -16,7 +16,6 @@ models:
           - not_null
 # OrderDetail table
 
-
 # Product table
   - name: raw_product
     columns:
@@ -30,7 +29,7 @@ models:
           - relationships:
               to: ref('raw_supplier')
               field: supplierID
-      - name: CATEGORYID
+      - name: categoryID
         tests:
           - not_null
           - relationships:
@@ -40,3 +39,14 @@ models:
         tests:
           - accepted_values:
               values: ['true', 'false']
+
+# Category table
+  - name: raw_category
+    columns:
+      - name: categoryID
+        tests:
+        - unique
+        - not_null
+      - name: categoryName
+        tests:
+        - not_null
