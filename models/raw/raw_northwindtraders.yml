@@ -35,6 +35,15 @@ models:
           - relationships:
               to: ref('raw_category')
               field: categoryID
+      - name: quantityPerUnit
+        tests:
+          - not_null
+      - name: unitPrice
+        tests:
+          - not_null
+      - name: unitsInStock
+        tests:
+          - not_null
       - name: discontinued
         tests:
           - accepted_values:
