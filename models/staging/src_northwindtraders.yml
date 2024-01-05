@@ -1,5 +1,6 @@
 version: 2
 
+
 sources:
 - name: NORTHWINDTRADERS
   database: RAW
@@ -16,3 +17,17 @@ sources:
     - name: SHIPPER
     - name: SUPPLIER
     - name: TERRITORY
+
+    - name: FRESH_ORDERS
+      description: fresh orders to be appended into ORDERS table
+      columns:
+        - name: ORDERID
+          description: primary key for FRESH_ORDERS
+
+    - name: FRESH_ORDERDETAIL
+      description: fresh orders to be appended into ORDERDETAIL table
+      columns:
+        - name: ORDERID
+          description: primary key for FRESH_ORDERDETAIL
+
+
