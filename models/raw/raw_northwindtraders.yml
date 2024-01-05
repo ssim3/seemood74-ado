@@ -24,6 +24,14 @@ models:
     columns:
       - name: ShipperID
 
+# Employee table
+  - name: raw_employee
+    columns:
+      - name: EmployeeID
+        tests: 
+          - unique
+          - not_null 
+
 # EmployeeTerritory
   - name: raw_employeeterritory
     columns:
@@ -31,6 +39,20 @@ models:
         tests:
           - unique
           - not_null
+
+
+# Territory table
+  - name: raw_territory
+    columns:
+      - name: TerritoryID
+        tests: 
+          - unique
+          - not_null 
+
+      - name: RegionID 
+        tests:
+        - unique 
+        - not_null
 
 # Region table
   - name: raw_region
