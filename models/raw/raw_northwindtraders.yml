@@ -1,0 +1,17 @@
+version: 2
+
+models:
+# Orders table
+  - name: raw_order
+    columns:
+      - name: OrderID
+        tests:
+          - unique
+          - not_null
+      - name: CustomerID
+        tests:
+          - not_null
+      - name: EmployeeID
+        tests:  
+          - not_null
+# OrderDetail table
