@@ -70,6 +70,28 @@ models:
               values: ['NULL']
         
 # OrderDetail table
+  - name: raw_orderdetail
+    columns:
+      # OrderID, ProductID - Unique, Not Null
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+      # OrderID - Not Null, References raw_order
+      - name: OrderID
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('raw_order')
+                  field: OrderID
+      # ProductID - Not Null, References raw_product
+      - name: ProductID
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('raw_product')
+                  field: ProductID
+      # unitprice, quantity, discount check test_raw_orderdetail_unitprice_quantity_discount_is_positive
 
 # Shipper table
   - name: raw_shipper
