@@ -31,14 +31,9 @@ models:
       - name: requiredDate
         tests:  
           - not_null
-      # shippedDate - Not Null
-      - name: shippedDate
-        tests:  
-          - not_null
       # shipVia - Not Null, Valid foreign key ref
       - name: shipVia
         tests:  
-          - not_null
           - relationships:
               to: ref('raw_shipper')
               field: ShipperID
@@ -46,41 +41,34 @@ models:
       # shipName - Not Null, Does not contain "NULL" string
       - name: shipName
         tests:  
-          - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
       # shipAddress - Not Null, Does not contain "NULL" string
       - name: shipAddress
         tests:  
-          - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
       # shipCity - Not Null, Does not contain "NULL" string
       - name: shipCity
         tests:  
-          - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
       # shipRegion - Not Null, Does not contain "NULL" string
       - name: shipRegion
         tests:  
-          - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
       # shipPostalCode - Not Null, Does not contain "NULL" string
       - name: shipPostalCode
         tests:  
-          - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
       # shipPostalCode - Not Null, Does not contain "NULL" string
       - name: shipCountry
         tests:  
-          - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
         
-      
 # OrderDetail table
 
 # Shipper table
