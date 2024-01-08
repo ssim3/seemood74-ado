@@ -326,4 +326,90 @@ models:
         tests:
           - not_null
 
+# ------------------------------------------------
+# Supplier table
+# ------------------------------------------------
+  - name: raw_supplier
+    columns:
+      # supplierID - Not Null, Unique
+      - name: supplierID
+        tests:
+          - unique
+          - not_null
+      # companyName - Not Null
+      - name: companyName
+        tests:
+          - not_null
+      # contactName - Not Null
+      - name: contactName
+        tests:
+          - not_null
+      # contactTitle - Not Null
+      - name: contactTitle
+        tests:
+          - not_null
+      # address - Not Null
+      - name: address
+        tests:
+          - not_null
+      # city - Not Null
+      - name: city
+        tests:
+          - not_null
+      # postalCode - Not Null
+      - name: postalCode
+        tests:
+          - not_null
+      # country - Not Null
+      - name: country
+        tests:
+          - not_null
+      # phone - Not Null
+      - name: phone
+        tests:
+          - not_null
+      # fax, homepage - Can be null 
 
+# ------------------------------------------------
+# Customer table
+# ------------------------------------------------
+  - name: raw_customer
+    columns:
+      # customerID - Not Null, Unique
+      - name: customerID
+        tests:
+          - unique
+          - not_null
+      # companyName - Not Null
+      - name: companyName
+        tests:
+          - not_null
+      # contactName - Not Null
+      - name: contactName
+        tests:
+          - not_null
+      # contactTitle - Not Null
+      - name: contactTitle
+        tests:
+          - not_null
+      # address - Not Null
+      - name: address
+        tests:
+          - not_null
+      # city - Not Null
+      - name: city
+        tests:
+          - not_null
+      # postalCode - Not Null
+      - name: postalCode
+        tests:
+          - not_null
+      # country - Not Null
+      - name: country
+        tests:
+          - not_null
+      # phone - Not Null
+      - name: phone
+        tests:
+          - not_null
+      # region, fax - Can be null 
