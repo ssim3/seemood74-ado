@@ -101,30 +101,145 @@ models:
 # Employee table
   - name: raw_employee
     columns:
+    # EmployeeID - unique, not null 
       - name: EmployeeID
         tests: 
           - unique
-          - not_null 
-
-# EmployeeTerritory
+          - not_null
+    # LastName - can be null, but checking for null
+      - name: LastName 
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # FirstName - can be null, but checking for null
+      - name: FirstName 
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Title - can be null, but checking for null
+      - name: Title 
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # TitleOfCourtesy - can be null, but checking for null
+      - name: TitleOfCourtesy 
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # BirthDate - can be null, but checking for null
+      - name: BirthDate
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # HireDate - can be null, but checking for null
+      - name: HireDate
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Address - can be null, but checking for null
+      - name: Address
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # City - can be null, but checking for null
+      - name: City
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Region - can be null, but checking for null
+      - name: Region
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # PostalCode - can be null, but checking for null
+      - name: PostalCode
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Country - can be null, but checking for null
+      - name: Country
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # HomePhone - can be null, but checking for null
+      - name: HomePhone
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Extension - can be null, but checking for null
+      - name: Extension
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Photo - can be null, but checking for null
+      - name: Photo 
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # Notes - can be null, but checking for null
+      - name: Notes
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # ReportsTo - can be null, but checking for null
+      - name: ReportsTo
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+    # PhotoPath - can be null, but checking for null
+      - name: PhotoPath
+        tests: 
+          - not_null
+          - dbt_utils.not_accepted_values:
+              values: ['NULL']
+              
+# EmployeeTerritory table
   - name: raw_employeeterritory
     columns:
+    # EmployeeID, TerritoryID - Unique, Not Null
       - name: surrogate_key
         tests:
           - unique
           - not_null
+    # TerritoryID - not_null, references raw_territory
+      - name: TerritoryID
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('raw_territory')
+                  field: TerritoryID
 
 # Territory table
   - name: raw_territory
     columns:
+    # TerritoryID - unique, not null
       - name: TerritoryID
         tests: 
           - unique
           - not_null 
-
+    # RegionID - not null, references raw_region
       - name: RegionID 
         tests:
         - not_null
+        - relationships: 
+                  to: ref('raw_region')
+                  field: RegionID
 
 # Region table
   - name: raw_region
