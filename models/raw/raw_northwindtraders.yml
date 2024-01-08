@@ -117,100 +117,93 @@ models:
 # ------------------------------------------------
   - name: raw_employee
     columns:
-    # EmployeeID - unique, not null 
+      # EmployeeID - unique, not null 
       - name: EmployeeID
         tests: 
           - unique
           - not_null
-    # LastName - Not Null
+      # LastName - Not Null
       - name: LastName 
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # FirstName - Not Null
+      # FirstName - Not Null
       - name: FirstName 
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Title - Not Null, accepted values
+      # Title - Not Null, accepted values
       - name: Title 
         tests: 
           - not_null
-    # TitleOfCourtesy - can be null, accepted values
+      # TitleOfCourtesy - can be null, accepted values
       - name: TitleOfCourtesy 
         tests: 
           - not_null
           - accepted_values:
               values: ['Mr.', 'Mrs.', 'Ms.', 'Dr.']
-    # BirthDate - Not Null
+      # BirthDate - Not Null
       - name: BirthDate
         tests: 
           - not_null
-    # HireDate - Not Null
+      # HireDate - Not Null
       - name: HireDate
         tests: 
           - not_null
-    # Address - Not Null
+      # Address - Not Null
       - name: Address
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # City - can be null, but checking for null
+      # City - can be null, but checking for null
       - name: City
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Region - can be null, but checking for null
+      # Region - can be null, but checking for null
       - name: Region
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # PostalCode - can be null, but checking for null
+      # PostalCode - can be null, but checking for null
       - name: PostalCode
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Country - can be null, but checking for null
+      # Country - can be null, but checking for null
       - name: Country
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # HomePhone - can be null, but checking for null
+      # HomePhone - can be null, but checking for null
       - name: HomePhone
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Extension - can be null, but checking for null
+      # Extension - can be null, but checking for null
       - name: Extension
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Photo - can be null, but checking for null
+      # Photo - can be null, but checking for null
       - name: Photo 
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Notes - can be null, but checking for null
-      - name: Notes
-        tests: 
-          - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
-    # ReportsTo - can be null, but checking for null
-      - name: ReportsTo
-        tests: 
-          - not_null
-    # PhotoPath - can be null, but checking for null
+      # Notes - can be null
+      # ReportsTo - can be null
+
+      # PhotoPath - can be null, but checking for null
       - name: PhotoPath
         tests: 
           - not_null
@@ -222,12 +215,19 @@ models:
 # ------------------------------------------------
   - name: raw_employeeterritory
     columns:
-    # EmployeeID, TerritoryID - Unique, Not Null
+      # EmployeeID, TerritoryID - Unique, Not Null
       - name: surrogate_key
         tests:
           - unique
           - not_null
-    # TerritoryID - not_null, references raw_territory
+      # EmployeeID - Not Null, references raw_employee
+      - name: EmployeeID
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('raw_employee')
+                  field: EmployeeID
+      # TerritoryID - not_null, references raw_territory
       - name: TerritoryID
         tests:
           - not_null
@@ -240,12 +240,16 @@ models:
 # ------------------------------------------------
   - name: raw_territory
     columns:
-    # TerritoryID - unique, not null
+      # TerritoryID - unique, not null
       - name: TerritoryID
         tests: 
           - unique
           - not_null 
-    # RegionID - not null, references raw_region
+      # territoryDescription - not null
+      - name: territoryDescription
+        tests: 
+          - not_null 
+      # RegionID - not null, references raw_region
       - name: RegionID 
         tests:
         - not_null
@@ -258,9 +262,14 @@ models:
 # ------------------------------------------------
   - name: raw_region
     columns:
+      # RegionID - Not Null, Unique
       - name: RegionID
         tests:
           - unique
+          - not_null
+      # regionDescription - Not Null
+      - name: regionDescription
+        tests:
           - not_null
 
 # ------------------------------------------------
@@ -307,12 +316,14 @@ models:
 # ------------------------------------------------
   - name: raw_category
     columns:
+      # categoryID - Not Null, Unique
       - name: categoryID
         tests:
-        - unique
-        - not_null
+          - unique
+          - not_null
+      # categoryName - Not Null
       - name: categoryName
         tests:
-        - not_null
+          - not_null
 
 
