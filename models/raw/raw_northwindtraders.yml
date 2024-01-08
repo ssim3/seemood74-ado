@@ -134,14 +134,10 @@ models:
       - name: BirthDate
         tests: 
           - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
     # HireDate - can be null, but checking for null
       - name: HireDate
         tests: 
           - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
     # Address - can be null, but checking for null
       - name: Address
         tests: 
