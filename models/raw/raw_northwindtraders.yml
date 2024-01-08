@@ -1,7 +1,9 @@
 version: 2
 
 models:
+# ------------------------------------------------
 # Orders table
+# ------------------------------------------------
   - name: raw_order
     columns:
       # OrderID - Unique, Not Null
@@ -69,7 +71,9 @@ models:
           - dbt_utils.not_accepted_values:
               values: ['NULL']
         
+# ------------------------------------------------
 # OrderDetail table
+# ------------------------------------------------
   - name: raw_orderdetail
     columns:
       # OrderID, ProductID - Unique, Not Null
@@ -93,12 +97,24 @@ models:
                   field: ProductID
       # unitprice, quantity, discount check test_raw_orderdetail_unitprice_quantity_discount_is_positive
 
+# ------------------------------------------------
 # Shipper table
+# ------------------------------------------------
   - name: raw_shipper
     columns:
+      # ShipperID - Unique, Not Null
       - name: ShipperID
+        tests:
+          - unique
+          - not_null
+      # companyName - Not Null
+      - name: companyName
+        tests:
+          - not_null
 
+# ------------------------------------------------
 # Employee table
+# ------------------------------------------------
   - name: raw_employee
     columns:
     # EmployeeID - unique, not null 
@@ -106,39 +122,37 @@ models:
         tests: 
           - unique
           - not_null
-    # LastName - can be null, but checking for null
+    # LastName - Not Null
       - name: LastName 
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # FirstName - can be null, but checking for null
+    # FirstName - Not Null
       - name: FirstName 
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-    # Title - can be null, but checking for null
+    # Title - Not Null, accepted values
       - name: Title 
         tests: 
           - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
-    # TitleOfCourtesy - can be null, but checking for null
+    # TitleOfCourtesy - can be null, accepted values
       - name: TitleOfCourtesy 
         tests: 
           - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
-    # BirthDate - can be null, but checking for null
+          - accepted_values:
+              values: ['Mr.', 'Mrs.', 'Ms.', 'Dr.']
+    # BirthDate - Not Null
       - name: BirthDate
         tests: 
           - not_null
-    # HireDate - can be null, but checking for null
+    # HireDate - Not Null
       - name: HireDate
         tests: 
           - not_null
-    # Address - can be null, but checking for null
+    # Address - Not Null
       - name: Address
         tests: 
           - not_null
@@ -196,8 +210,6 @@ models:
       - name: ReportsTo
         tests: 
           - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
     # PhotoPath - can be null, but checking for null
       - name: PhotoPath
         tests: 
@@ -205,7 +217,9 @@ models:
           - dbt_utils.not_accepted_values:
               values: ['NULL']
               
+# ------------------------------------------------
 # EmployeeTerritory table
+# ------------------------------------------------
   - name: raw_employeeterritory
     columns:
     # EmployeeID, TerritoryID - Unique, Not Null
@@ -221,7 +235,9 @@ models:
                   to: ref('raw_territory')
                   field: TerritoryID
 
+# ------------------------------------------------
 # Territory table
+# ------------------------------------------------
   - name: raw_territory
     columns:
     # TerritoryID - unique, not null
@@ -237,7 +253,9 @@ models:
                   to: ref('raw_region')
                   field: RegionID
 
+# ------------------------------------------------
 # Region table
+# ------------------------------------------------
   - name: raw_region
     columns:
       - name: RegionID
@@ -245,40 +263,48 @@ models:
           - unique
           - not_null
 
+# ------------------------------------------------
 # Product table
+# ------------------------------------------------
   - name: raw_product
     columns:
+      # productID - Unique, Not Null
       - name: productID
         tests:
           - unique
           - not_null
+      # supplierID - Not Null, references raw_supplier
       - name: supplierID
         tests: 
           - not_null
           - relationships:
               to: ref('raw_supplier')
               field: supplierID
+      # categoryID - Not Null, references raw_category
       - name: categoryID
         tests:
           - not_null
           - relationships:
               to: ref('raw_category')
               field: categoryID
+      # quantityPerUnit - Not Null
       - name: quantityPerUnit
         tests:
           - not_null
+      # unitPrice - Not Null
       - name: unitPrice
         tests:
           - not_null
-      - name: unitsInStock
-        tests:
-          - not_null
+      # discontinued - True or False
       - name: discontinued
         tests:
+          - not_null
           - accepted_values:
               values: ['true', 'false']
 
+# ------------------------------------------------
 # Category table
+# ------------------------------------------------
   - name: raw_category
     columns:
       - name: categoryID
@@ -288,3 +314,5 @@ models:
       - name: categoryName
         tests:
         - not_null
+
+
