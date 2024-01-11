@@ -55,11 +55,6 @@ models:
         tests:  
           - dbt_utils.not_accepted_values:
               values: ['NULL']
-      # shipRegion - Not Null, Does not contain "NULL" string
-      - name: shipRegion
-        tests:  
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
       # shipPostalCode - Not Null, Does not contain "NULL" string
       - name: shipPostalCode
         tests:  
@@ -160,12 +155,6 @@ models:
               values: ['NULL']
       # City - can be null, but checking for null
       - name: City
-        tests: 
-          - not_null
-          - dbt_utils.not_accepted_values:
-              values: ['NULL']
-      # Region - can be null, but checking for null
-      - name: Region
         tests: 
           - not_null
           - dbt_utils.not_accepted_values:

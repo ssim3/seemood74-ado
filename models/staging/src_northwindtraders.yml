@@ -6,18 +6,19 @@ sources:
   database: RAW
   schema: NORTHWINDTRADERS
   tables:
+  # base tables
     - name: CATEGORY
     - name: CUSTOMER
     - name: EMPLOYEE
     - name: EMPLOYEETERRITORY
     - name: ORDERDETAIL
-    - name: ORDERS
+    - name: ORDER
     - name: PRODUCT
     - name: REGION
     - name: SHIPPER
     - name: SUPPLIER
     - name: TERRITORY
-
+  
     - name: FRESH_ORDERS
       description: fresh orders to be appended into ORDERS table
       columns:
