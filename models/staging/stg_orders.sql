@@ -16,15 +16,15 @@ o.shipAddress,
 o.shipCity,
 o.shipPostalCode,
 o.shipCountry,
-DATEDIFF(DAY, o.OrderDate, o.ShippedDate) AS ShippingTime
-DATEDIFF(DAY, o.ShippedDate, o.RequiredDate) AS RemainingTime
+DATEDIFF(DAY, o.OrderDate, o.ShippedDate) AS ShippingTime,
+DATEDIFF(DAY, o.ShippedDate, o.RequiredDate) AS RemainingTime,
 
 -- RAW_ORDERDETAIL 
 od.ProductID,
 od.UnitPrice,
 od.Quantity,
 od.Discount,
-(od.Quantity * od.UnitPrice) AS GrossRevenue 
+(od.Quantity * od.UnitPrice) AS GrossRevenue,
 
 -- RAW_PRODUCT 
 p.ProductName,
