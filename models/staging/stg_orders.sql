@@ -24,6 +24,7 @@ od.UnitPrice,
 od.Quantity,
 od.Discount,
 (od.Quantity * od.UnitPrice) AS GrossRevenue 
+
 -- RAW_PRODUCT 
 p.ProductName,
 p.SupplierID,
