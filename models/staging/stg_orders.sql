@@ -18,6 +18,7 @@ o.shipPostalCode,
 o.shipCountry,
 DATEDIFF(DAY, o.OrderDate, o.ShippedDate) AS ShippingTime
 DATEDIFF(DAY, o.ShippedDate, o.RequiredDate) AS RemainingTime
+
 -- RAW_ORDERDETAIL 
 od.ProductID,
 od.UnitPrice,
