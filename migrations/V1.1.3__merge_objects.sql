@@ -14,4 +14,4 @@ f.UnitCost AS UnitCost,
 f.CategoryName AS CategoryName,
 f.Supplier AS SupplierName
 FROM RAW_PRODUCT r INNER JOIN PRODUCT_FRESH f 
-ON RAW_PRODUCT.ProductID = PRODUCT_FRESH.ProductID;
+ON r.ProductID = f.ProductID;
