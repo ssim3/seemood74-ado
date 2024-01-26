@@ -5,5 +5,5 @@ WITH incremental_orders AS (
 )
 
 INSERT INTO RAW_ORDER
-SELECT *
+VALUES SELECT *
 FROM incremental_orders;
