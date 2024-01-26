@@ -1,9 +1,9 @@
 WITH incremental_orders AS (
     SELECT *
-    FROM {{ ref('fresh_orderdetail') }}
+    FROM FRESH_ORDERDETAIL
     WHERE CAST(ORDERID AS BIGINT) > (SELECT MAX(CAST(ORDERID AS BIGINT)) FROM {{ this }})
 )
 
-INSERT INTO {{ ref('raw_orderdetail') }}
+INSERT INTO RAW_ORDERDETAIL
 SELECT *
 FROM incremental_orders;
