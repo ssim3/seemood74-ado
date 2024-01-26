@@ -1,0 +1,3 @@
+SELECT OrderID, SUM(DISCOUNT) as total_discount
+FROM RAW_ORDERDETAIL
+GROUP BY OrderID, ProductID
