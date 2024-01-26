@@ -105,7 +105,7 @@ sources:
           - name: Discount
             description: The discount percentage applied to the price per unit
 
-      - name: ORDER
+      - name: ORDERS
         description: Customer orders
         columns:
           - name: OrderID

@@ -1,7 +1,4 @@
-{{ config(materialized='incremental', unique_key='ORDERID') }}
+{{ config (materialized='table')}}
 
-SELECT OrderID || '-' || ProductID as surrogate_key, *
-FROM {{ ref ('fresh_orderdetail') }}
-{% if is_incremental() %}
-WHERE CAST(ORDERID AS BIGINT) > (SELECT MAX(CAST(ORDERID AS BIGINT))  FROM {{this}})
-{% endif %}
+SELECT * 
+FROM {{ source('NORTHWINDTRADERS', 'ORDERDETAIL') }}
