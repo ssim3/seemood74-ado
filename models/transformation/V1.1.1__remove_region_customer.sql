@@ -1,3 +1,4 @@
+-- Dropping region columns in tables
 ALTER TABLE RAW_CUSTOMER
 DROP COLUMN region;
 

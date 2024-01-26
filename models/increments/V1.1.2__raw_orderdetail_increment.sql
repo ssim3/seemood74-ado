@@ -1,7 +1,9 @@
-{{ config(materialized='incremental', unique_key='ORDERID') }}
+WITH incremental_orders AS (
+    SELECT *
+    FROM {{ ref('fresh_orderdetail') }}
+    WHERE CAST(ORDERID AS BIGINT) > (SELECT MAX(CAST(ORDERID AS BIGINT)) FROM {{ this }})
+)
 
-SELECT OrderID || '-' || ProductID as surrogate_key, *
-FROM {{ ref ('fresh_orderdetail') }}
-{% if is_incremental() %}
-WHERE CAST(ORDERID AS BIGINT) > (SELECT MAX(CAST(ORDERID AS BIGINT))  FROM {{this}})
-{% endif %}
+INSERT INTO {{ ref('raw_orderdetail') }}
+SELECT *
+FROM incremental_orders;
